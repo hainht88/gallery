@@ -1,11 +1,20 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import http from "../Services/HttpService";
 import LazyImage from "./LazyImage";
 import placeHolder from "../resources/images/place-holder.png";
+import config from "../config.json";
 
 class Gallery extends Component {
+  state = { data: [] };
+
+  async componentDidMount() {
+    const { data } = await http.get(config.BASE_API_URL);
+    this.setState({ data });
+  }
+
   render() {
-    const { data } = this.props;
+    const { data } = this.state;
 
     return (
       <div className="container">
