@@ -3,17 +3,6 @@ import { Link } from "react-router-dom";
 import LazyImage from "./LazyImage";
 import placeHolder from "../resources/images/place-holder.png";
 
-const LazyImageWrapper = props => (
-  <LazyImage
-    placeHolder={placeHolder}
-    src={props.src}
-    width={`100%`}
-    height={`auto`}
-    effect={"opacity"}
-    alt={props.alt}
-  />
-);
-
 class Gallery extends Component {
   render() {
     const { data } = this.props;
@@ -29,10 +18,13 @@ class Gallery extends Component {
                 className="text-white"
               >
                 <div className="card card-box">
-                  <LazyImageWrapper
+                  <LazyImage
+                    placeHolder={placeHolder}
                     src={img.thumbnailUrl}
+                    width={`100%`}
+                    height={`auto`}
+                    effect={"opacity"}
                     alt={img.title}
-                    className="card-img"
                   />
                   <div className="card-overlay">
                     <p className="card-text">{img.id}</p>
