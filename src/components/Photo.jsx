@@ -6,10 +6,27 @@ class Photo extends Component {
   };
 
   render() {
+    const { img } = this.props.location.state;
+    console.log(img);
+
     return (
-      <button onClick={() => this.goBack()} className="btn btn-primary">
-        Back
-      </button>
+      <div className="container clearfix">
+        <img
+          src={img.url}
+          alt={img.title}
+          className="img-fluid photo float-left "
+        />
+        <div className="photo-info float-left">
+          <p>{img.title.toUpperCase()}</p>
+          <button
+            onClick={() => this.goBack()}
+            className="btn btn-primary float-right"
+          >
+            <i className="fa fa-undo" />
+            &nbsp;Back
+          </button>
+        </div>
+      </div>
     );
   }
 }

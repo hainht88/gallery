@@ -13,8 +13,17 @@ code {
     monospace;
 }
 
-.navbar {
+hr,
+.navbar,
+.pagination,
+.photo {
   margin-bottom: 30px;
+}
+
+.navbar-brand {
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 2rem;
 }
 
 .card-box {
@@ -29,4 +38,8 @@ code {
   left: 0;
   padding: 1.25rem;
   background-color: rgba(0, 0, 0, 0.5);
+}
+
+.photo-info {
+  margin-left: 30px;
 }

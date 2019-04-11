@@ -1,13 +1,13 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import _ from "lodash";
 import http from "../Services/HttpService";
 import Loading from "./common/Loading";
-import LazyImage from "./LazyImage";
-import placeHolder from "../resources/images/place-holder.png";
+import CardBox from "./common/CardBox";
 import config from "../config.json";
+import Pagination from "./common/pagination";
 
 class Gallery extends Component {
-  state = { data: [], isLoading: true };
+  state = { data: [], isLoading: true, itemPerPage: 60, currentPage: 0 };
 
   async componentDidMount() {
     const { data } = await http.get(config.BASE_API_URL);
@@ -15,7 +15,10 @@ class Gallery extends Component {
   }
 
   render() {
-    const { data } = this.state;
+    const { data, itemPerPage, currentPage } = this.state;
+    const totalItems = data.length;
+    const totalPages = Math.ceil(totalItems / itemPerPage);
+    const paginatedPage = _.chunk(data, itemPerPage);
 
     return (
       <div className="container">
@@ -23,33 +26,27 @@ class Gallery extends Component {
           <Loading />
         ) : (
           <div className="d-flex flex-wrap justify-content-around">
-            {data &&
-              data.map(img => (
-                <Link
-                  to={`/gallery/${img.id}`}
-                  key={img.id}
-                  className="text-white"
-                >
-                  <div className="card card-box">
-                    <LazyImage
-                      placeHolder={placeHolder}
-                      src={img.thumbnailUrl}
-                      width={`100%`}
-                      height={`auto`}
-                      effect={"opacity"}
-                      alt={`image-${img.id}`}
-                    />
-                    <div className="card-overlay">
-                      <p className="card-text">{img.id}</p>
-                    </div>
-                  </div>
-                </Link>
+            {paginatedPage[currentPage] &&
+              paginatedPage[currentPage].map(img => (
+                <CardBox key={img.id} img={img} />
               ))}
           </div>
         )}
+        <hr />
+        <Pagination
+          currentPage={currentPage}
+          itemPerPage={itemPerPage}
+          totalItems={totalItems}
+          totalPages={totalPages}
+          onClick={this.handleCurrentPageChange}
+        />
       </div>
     );
   }
+
+  handleCurrentPageChange = offset => {
+    this.setState({ currentPage: this.state.currentPage + offset });
+  };
 }
 
 export default Gallery;
