@@ -9,23 +9,14 @@ import config from "../config.json";
 class Gallery extends Component {
   state = { data: [], isLoading: true };
 
-  componentDidMount() {
-    const { hits: data } = http
-      .get(config.BASE_API_URL)
-      .then(response => {
-        if (response.status === 200) {
-          this.setState({ isLoading: false });
-          this.setState({ data });
-          console.log("data", data);
-          console.log("reponse", response);
-        }
-      })
-      .catch(error => console.log("error", error));
+  async componentDidMount() {
+    const { data } = await http.get(config.BASE_API_URL);
+    this.setState({ data, isLoading: false });
   }
 
   render() {
     const { data } = this.state;
-
+    console.log(data);
     return (
       <div className="container">
         {this.state.isLoading ? (
@@ -46,7 +37,7 @@ class Gallery extends Component {
                       width={`100%`}
                       height={`auto`}
                       effect={"opacity"}
-                      alt={img.title}
+                      alt={`image-${img.id}`}
                     />
                     <div className="card-overlay">
                       <p className="card-text">{img.id}</p>

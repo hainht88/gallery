@@ -1,3 +1,1 @@
-{
-  "BASE_API_URL": "https://pixabay.com/api/?key=12165247-2cef7cfcf646a5a2892afc07e&q=yellow+flowers&image_type=photo"
-}
+{ "BASE_API_URL": "https://jsonplaceholder.typicode.com/photos" }
