@@ -12,15 +12,16 @@ class Gallery extends Component {
   }
 
   async componentDidMount() {
-    const { data } = await http.get(config.BASE_API_URL);
+    const { data } = await http.get(config.BASE_API_URL_2);
     this.setState({ data, isLoading: false });
   }
 
   render() {
     const { data, itemPerPage, currentPage, isLoading } = this.state;
-    const totalItems = data.length;
+    const totalItems = data.totalHits > 0 ? data.hits.length : 0;
     const totalPages = Math.ceil(totalItems / itemPerPage);
-    const paginatedPage = _.chunk(data, itemPerPage);
+    const paginatedPage = _.chunk(data.hits, itemPerPage);
+    console.log(data.hits);
 
     return (
       <div className="container">

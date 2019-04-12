@@ -1,1 +1,4 @@
-{ "BASE_API_URL": "https://jsonplaceholder.typicode.com/photos" }
+{
+  "BASE_API_URL_1": "https://jsonplaceholder.typicode.com/photos",
+  "BASE_API_URL_2": "https://pixabay.com/api/?key=12165247-2cef7cfcf646a5a2892afc07e&q=beach&per_page=200&image_type=photo"
+}

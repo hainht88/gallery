@@ -12,11 +12,11 @@ const CardBox = props => {
       <div className="card card-box img-thumbnail">
         <LazyImage
           placeHolder={placeHolder}
-          src={img.thumbnailUrl}
+          src={img.previewURL}
           width={"100%"}
-          height={"auto"}
+          height={200}
           effect={"opacity"}
-          alt={img.title}
+          alt={img.tags}
         />
         <div className="card-overlay">
           <p className="card-text">{img.title}</p>
