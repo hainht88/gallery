@@ -1,8 +1,8 @@
 .lazy-image {
   opacity: 0;
-  transition: opacity 0.1s ease-in-out;
-  -webkit-transition: opacity 0.1s ease-in-out;
-  -moz-transition: opacity 0.1s ease-in-out;
+  transition: opacity 1s ease-in-out;
+  -webkit-transition: opacity 1s ease-in-out;
+  -moz-transition: opacity 1s ease-in-out;
 }
 
 .lazy-image.opacity {

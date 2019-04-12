@@ -7,7 +7,6 @@ class Photo extends Component {
 
   render() {
     const { img } = this.props.location.state;
-    console.log(img);
 
     return (
       <div className="container clearfix">
